@@ -16,6 +16,9 @@ class Character:
 
         modifiers = [stre, dex, con, inte, wis, cha]
         return modifiers
+    
+    def rskills(self, one, two, three, four):
+        one, two, three, four
 
 
 # print("Strength, dexterity, constitution, intelligence, wisdom, charisma =", Character.rstats(0, 0, 0, 0, 0, 0, 0))
@@ -55,5 +58,10 @@ while not answer:
         answer = True
     else:
         print("Error.")
+
+# loop while no answer is given, choose skills
+answer = False
+while not answer:
+    print("What skills you you want to put points into?")
 
 input()
