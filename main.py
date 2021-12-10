@@ -7,43 +7,51 @@ class Character:
         self.modifiers = modifiers
 
     def rstats(self, stre, dex, con, inte, wis, cha):
-        if stre == 0:
-            stre = math.floor((random.randint(1, 20) - 10)/2)
+        stre = math.floor((stre - 10)/2)
+        dex = math.floor((dex - 10)/2)
+        con = math.floor((con - 10)/2)
+        inte = math.floor((inte - 10)/2)
+        wis = math.floor((wis - 10)/2)
+        cha = math.floor((cha - 10)/2)
 
-        if dex == 0:
-            dex = math.floor((random.randint(1, 20) - 10)/2)
-
-        if con == 0:
-            con = math.floor((random.randint(1, 20) - 10)/2)
-
-        if inte == 0:
-            inte = math.floor((random.randint(1, 20) - 10)/2)
-
-        if wis == 0:
-            wis = math.floor((random.randint(1, 20) - 10)/2)
-
-        if cha == 0:
-            cha = math.floor((random.randint(1, 20) - 10)/2)
-        modifiers = stre, dex, con, inte, wis, cha
-        return stre, dex, con, inte, wis, cha
+        modifiers = [stre, dex, con, inte, wis, cha]
+        return modifiers
 
 
 # print("Strength, dexterity, constitution, intelligence, wisdom, charisma =", Character.rstats(0, 0, 0, 0, 0, 0, 0))
-# exit()
+
+# loop while an answer is not given, initiate stats based on input
 answer = False
 while not answer:
-    rll = input("Do you have your ability rolls? y/n\n")
-    if rll == "y" or "Y" or "Yes" or "yes":
-        st = input("Input your strength stat:")
-        dx = input("Input your strength stat:")
-        cn = input("Input your strength stat:")
-        it = input("Input your strength stat:")
-        wi = input("Input your strength stat:")
-        cr = input("Input your strength stat:")
+    print("Do you have your ability rolls?\n")
+    print("1) Yes, manually assign stats\n")
+    print("2) No, randomize my stats\n")
+    rll = input("What next: ")
+    if rll == "1":
+        st = int(input("Input your strength stat:"))
+        dx = int(input("Input your strength stat:"))
+        cn = int(input("Input your strength stat:"))
+        it = int(input("Input your strength stat:"))
+        wi = int(input("Input your strength stat:"))
+        cr = int(input("Input your strength stat:"))
         print("Calculating...")
+        base_stats = [st, dx, cn, it, wi, cr]
+        modifiers = Character.rstats(0, base_stats[0], base_stats[1], base_stats[2], base_stats[3], base_stats[4], base_stats[5])
+        print("Rolled:", base_stats)
+        print("Modifiers:", modifiers)
         answer = True
-    elif rll == "n" or "N" or "No" or "no":
+    elif rll == "2":
         print("Randomizing and Calculating...")
+        st = random.randint(1, 20)
+        dx = random.randint(1, 20)
+        cn = random.randint(1, 20)
+        it = random.randint(1, 20)
+        wi = random.randint(1, 20)
+        cr = random.randint(1, 20)
+        base_stats = [st, dx, cn, it, wi, cr]
+        modifiers = Character.rstats(0, base_stats[0], base_stats[1], base_stats[2], base_stats[3], base_stats[4], base_stats[5])
+        print("Rolled:", base_stats)
+        print("Modifiers:", modifiers)
         answer = True
     else:
         print("Error.")
