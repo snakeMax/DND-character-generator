@@ -130,5 +130,5 @@ answer = False
 while not answer:
     input()
     print("What skills you you want to put points into?")
-
+    # not finnished
 input()
